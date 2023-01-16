@@ -1,0 +1,43 @@
+#message-wrapper {
+  @apply fixed top-4 left-0 w-full text-center;
+  @apply flex flex-col-reverse;
+}
+
+.message {
+  max-width: 300px;
+  @apply rounded-md bg-white shadow-lg;
+  @apply m-auto py-3 px-4 inline-flex gap-3 items-start;
+}
+
+.message svg {
+  @apply w-6 h-6 flex-shrink-0 mt-0.5;
+}
+
+.message.info svg {
+  @apply text-blue-400;
+}
+
+.message p {
+  @apply text-left
+}
+
+.message-container {
+  @apply px-1 py-2;
+}
+
+.message.success {
+  @apply bg-green-100 text-green-700
+}
+
+.message.error {
+  @apply bg-red-100 text-red-700
+}
+
+.message.warning {
+  @apply bg-yellow-100 text-yellow-700;
+}
+
+
+
+
+
