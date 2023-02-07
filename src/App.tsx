@@ -1,5 +1,6 @@
 import { confirmAlert, confirmWarning } from "./components/Confirmbox"
 import { messageError, messageInfo, messageSuccess, messageWarning } from "./components/Message"
+import FormContainer from "./containers/FormContainer"
 
 function App() {
 
@@ -24,7 +25,8 @@ function App() {
 
   return (
     <div id="wrapper" className="h-screen bg-gray-200 flex flex-col gap-6 items-center justify-center" >
-      <div className="flex items-center gap-8">
+      <FormContainer />
+      <div className="hidden items-center gap-8">
         <button onClick={onConfirmWarning} className="btn-warning" >Confirm warning</button>
         <button onClick={onConfirmAlert} className="btn-danger" >Confirm alert</button>
       </div>
