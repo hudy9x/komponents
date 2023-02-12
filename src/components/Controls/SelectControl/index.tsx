@@ -9,6 +9,10 @@ import "./style.css"
 interface SelectControlProps {
   title?: string
   name?: string
+  disabled?: boolean
+  readOnly?: boolean
+  placeholder?: string
+  helper?: string
   value: ListItemValue
   onFormikChange?: FormikFunc
   onChange?: Dispatch<SetStateAction<ListItemValue>>
@@ -16,17 +20,29 @@ interface SelectControlProps {
 }
 
 export default function SelectControl({
+  title,
   name,
+  disabled,
+  readOnly,
+  helper,
+  placeholder,
   value,
   onChange,
   onFormikChange,
   children
 }: SelectControlProps) {
   const [visible, setVisible] = useState(false)
-  return <div className={`select-container ${visible ? '' : 'select-none'}`}>
+  const classes = [];
+
+  disabled && classes.push("disabled")
+  readOnly && classes.push("readonly")
+
+  return <div className={`select-container form-control ${visible ? '' : 'select-none'}`}>
+    {title ? <label>{title}</label> : null}
     <ListProvider value={{ value, onChange, visible, setVisible, name, onFormikChange }} >
       {children}
     </ListProvider>
+      {helper ? <p>{helper}</p> : null}
   </div>
 }
 
