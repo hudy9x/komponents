@@ -20,7 +20,8 @@ export default function ListContainer() {
   })
   const [val, setVal] = useState(options[0]);
 
-  return <form onSubmit={formik.handleSubmit} className="p-4 border border-gray-300 rounded-md shadow-md bg-white flex flex-col gap-4 w-[300px]">
+  return <form onSubmit={formik.handleSubmit} 
+    className="p-4 border border-gray-300 rounded-md shadow-md bg-white flex flex-col gap-4 w-[300px]">
     <Input title="Username" name="username" />
     <List
       value={val}

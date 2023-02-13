@@ -8,23 +8,25 @@ import { FormikFunc, ListItemValue } from "./type"
 import "./style.css"
 
 interface ListControlProps {
-  title?: string
   name?: string
+  title?: string
+  helper?: string
   disabled?: boolean
   readOnly?: boolean
-  placeholder?: string
-  helper?: string
   required?: boolean
-  addon?: JSX.Element
+  placeholder?: string
   value: ListItemValue
+  children: JSX.Element[]
+  // only use one of these onChange functions
   onFormikChange?: FormikFunc
   onChange?: Dispatch<SetStateAction<ListItemValue>>
-  children: JSX.Element[]
 }
 
 const ListContainer = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const { setVisible } = useListContext()
+
+  // handle clicking outside dropdown list
   useEffect(() => {
     const handleClickOutside = (ev: MouseEvent) => {
       const target = ev.target as HTMLElement
@@ -59,7 +61,6 @@ export default function ListControl({
   title,
   name,
   required = false,
-  addon,
   disabled,
   readOnly,
   helper,
@@ -75,7 +76,6 @@ export default function ListControl({
   disabled && classes.push("disabled")
   readOnly && classes.push("readonly")
   required && classes.push("required")
-  addon && classes.push("addon")
 
   return <div className={`${visible && !disabled && !readOnly ? '' : 'select-none'} ${classes.join(" ")}`}>
     {title ? <label>{title}</label> : null}
