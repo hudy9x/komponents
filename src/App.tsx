@@ -3,7 +3,7 @@ import { confirmAlert, confirmWarning } from "./components/Confirmbox"
 import { Input, Textarea } from "./components/Controls"
 import { messageError, messageInfo, messageSuccess, messageWarning } from "./components/Message"
 import FormContainer from "./containers/FormContainer"
-import SelectContainer from "./containers/SelectContainer"
+import ListContainer from "./containers/ListContainer"
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div id="wrapper" className="h-screen bg-gray-200 flex flex-col gap-6 items-center justify-center" >
-      <SelectContainer />
+      <ListContainer />
     </div>
   );
 }

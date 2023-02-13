@@ -3,15 +3,18 @@ import { ListContextProps } from "./type";
 
 const ListContext = createContext<ListContextProps>({
   name: '',
-  onFormikChange: () => {},
+  placeholder: '',
+  onFormikChange: () => { },
   visible: false,
-  setVisible: () => {},
-  value: {id: '', title: ''},
-  onChange: () => {}
+  setVisible: () => { },
+  value: { id: '', title: '' },
+  onChange: () => { },
+  disabled: false,
+  readOnly: false
 });
 export const ListProvider = ListContext.Provider
 
 export const useListContext = () => {
-  const { value, onChange, visible, setVisible, onFormikChange, name } = useContext(ListContext)
-  return { value, onChange, visible, setVisible, onFormikChange, name }
+  const context = useContext(ListContext)
+  return context
 }

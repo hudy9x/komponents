@@ -24,7 +24,7 @@
 
 .select-options {
   @apply py-1.5 bg-white rounded-md border border-gray-300 shadow-md;
-  @apply absolute top-full mt-1.5 left-0 w-full;
+  @apply absolute mt-1.5 left-0 w-full;
 }
 
 .select-item {
@@ -34,3 +34,5 @@
 .select-item.active{
   @apply bg-slate-100;
 }
+
+
