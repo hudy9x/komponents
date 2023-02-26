@@ -1,10 +1,10 @@
-import {Dispatch, SetStateAction, useState, useEffect, useRef} from "react"
-import {ListProvider} from "./context"
+import { Dispatch, SetStateAction, useState, useEffect, useRef } from "react"
+import { ListProvider } from "./context"
 import ListButton from "./ListButton"
 import ListItem from "./ListItem"
 import ListOptions from "./ListOptions"
-import {useListContext} from "./context"
-import {FormikFunc, ListItemValue} from "./type"
+import { useListContext } from "./context"
+import { FormikFunc, ListItemValue } from "./type"
 import "./style.css"
 
 interface ListControlProps {
@@ -24,14 +24,14 @@ interface ListControlProps {
 interface ListContainerProps {
   children: JSX.Element | JSX.Element[]
 }
-const ListContainer = ({children}: ListContainerProps) => {
+const ListContainer = ({ children }: ListContainerProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const {setVisible} = useListContext()
+  const { setVisible } = useListContext()
 
   // handle clicking outside dropdown list
   useEffect(() => {
 
-    const handleClickOutside = (ev:MouseEvent) => {
+    const handleClickOutside = (ev: MouseEvent) => {
       const target = ev.target as HTMLElement
       ev.stopPropagation()
 
@@ -61,7 +61,7 @@ const ListContainer = ({children}: ListContainerProps) => {
 }
 
 export default function ListControl({
-  title, name, require = false,
+  title, name,
   disabled, readOnly, helper,
   placeholder = '', value, required,
   onChange, onFormikChange, children
@@ -73,7 +73,7 @@ export default function ListControl({
   readOnly && classes.push("readonly")
   required && classes.push("required")
 
-  return <div className={`${visible && !disabled && !readOnly ? '' : 'select-none'} ${classes.join('' )}`} >
+  return <div className={`${visible && !disabled && !readOnly ? '' : 'select-none'} ${classes.join('')}`} >
     {title ? <label>{title}</label> : null}
     <ListProvider value={{
       value,
@@ -90,9 +90,9 @@ export default function ListControl({
         {children}
       </ListContainer>
     </ListProvider>
-      {helper ? <p className="mt-2 text-sm text-gray-500">{helper}</p> : null}
+    {helper ? <p className="mt-2 text-sm text-gray-500">{helper}</p> : null}
   </div>
-} 
+}
 
 ListControl.Button = ListButton
 ListControl.Options = ListOptions
