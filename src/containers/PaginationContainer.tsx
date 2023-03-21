@@ -4,7 +4,7 @@ export default function PaginationContainer() {
   const onChange = (page: number) => {
     console.log(page)
   }
-  return <div>
+  return <div className="p-4 border border-gray-300 shadow-lg bg-white rounded-lg space-y-2">
     <h2>Full pagination</h2>
     {/*
     <Pagination current={1} total={5}  onChange={onChange} />
