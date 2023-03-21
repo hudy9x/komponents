@@ -7,35 +7,44 @@ import PageHead from "./PageHead";
 import PageBody from "./PageBody";
 import PageTail from "./PageTail";
 import { PageProvider } from "./context";
+import PageFull from "./PageFull";
 
 export default function PaginationContainer({
   current,
   total,
   maxPageDisplay = 5,
-  limit = 10
+  limit = 10,
+  onChange = () => {}
+  
 }: IPaginationProps) {
   const [currentPage, setCurrentPage] = useState(current)
-  const totalPage = Math.ceil(total/limit)
+  const totalPage = Math.ceil(total / limit)
 
-  return <div className="page-wrapper">
-    <PageProvider value={{
-      current: currentPage,
-      setCurrent: (page: number) => { setCurrentPage(page) },
-      limit,
-      total,
-      totalPage,
-      maxPageDisplay
-    }}>
-      <PageSummary total={total} />
+  const onSetCurrent = (page: number) => {
+    onChange(page)
+    setCurrentPage(page)
+  }
+  return <PageProvider value={{
+    current: currentPage,
+    setCurrent: onSetCurrent,
+    limit,
+    total,
+    totalPage,
+    maxPageDisplay,
+    onChange
+  }}>
+    <div className="page-wrapper">
+      <PageSummary />
       <div>
         <nav className="page-nav" aria-label="Pagination">
-          <PagePrev/>
-          <PageHead/>
-          {/*<PageBody/>*/}
-          {/*<PageTail/>*/}
-          <PageNext/>
+          <PagePrev />
+          <PageFull />
+          <PageHead />
+          <PageBody />
+          <PageTail />
+          <PageNext />
         </nav>
       </div>
-    </PageProvider>
-  </div>
+    </div>
+  </PageProvider>
 }

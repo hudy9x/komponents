@@ -3,7 +3,8 @@ import { IPageContext } from "./type";
 
 const PageContext = createContext<IPageContext>({
   current: 1,
-  setCurrent: (page: number) => {},
+  setCurrent: (page: number) => { },
+  onChange: () => {},
   limit: 10,
   total: 0,
   totalPage: 1,

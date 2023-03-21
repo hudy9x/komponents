@@ -2,6 +2,7 @@ export interface IPaginationProps {
   current: number;
   total: number
   maxPageDisplay?: number
+  onChange?: (page: number) => void
   limit?: number
 }
 
@@ -12,4 +13,5 @@ export interface IPageContext {
   total: number
   totalPage: number
   maxPageDisplay: number
+  onChange: (page: number) => void
 }

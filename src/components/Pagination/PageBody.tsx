@@ -1,25 +1,28 @@
 import { usePaginate } from "./context";
 import PageItem from "./PageItem";
 import { PageDot } from "./PageNavigator";
-import { generatePages } from "./utils";
 
 export default function PageBody() {
-  const { totalPage, maxPageDisplay } = usePaginate()
-  const pages = generatePages(maxPageDisplay - 1);
+  const { current, totalPage, maxPageDisplay } = usePaginate()
 
-  console.log(maxPageDisplay, totalPage)
-
-  if (maxPageDisplay > totalPage) {
+  if (current <= maxPageDisplay - 2) {
     return null
   }
 
+  if (current > totalPage - (maxPageDisplay - 2)) return null
+
+  const pages = [current - 1, current, current + 1]
+
+
   return (
     <>
-      <PageDot />
-      {pages.map((p) => {
-        return <PageItem index={p.page} />;
+      <PageItem index={1} />
+      <PageDot index={2} />
+      {pages.map(p => {
+        return <PageItem key={p} index={p} active={current === p} />
       })}
-      <PageDot />
+      <PageDot index={totalPage - 1} />
+      <PageItem index={totalPage} />
     </>
   );
 }

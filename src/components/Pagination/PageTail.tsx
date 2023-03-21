@@ -4,14 +4,24 @@ import { PageDot } from "./PageNavigator";
 import { generatePages } from "./utils";
 
 export default function PageTail() {
-  const { maxPageDisplay } = usePaginate()
-  const pages = generatePages(maxPageDisplay - 1);
+  const { maxPageDisplay, current, totalPage } = usePaginate()
+
+  if (totalPage <= maxPageDisplay) {
+    return null
+  }
+
+  if (current < totalPage - 2) {
+    return null
+  }
+
+  const pages = generatePages(maxPageDisplay - 1, totalPage - (maxPageDisplay - 1));
 
   return (
     <>
-      <PageDot />
+      <PageItem index={1} />
+      <PageDot index={2}/>
       {pages.map((p) => {
-        return <PageItem index={p.page} />;
+        return <PageItem key={p.page} index={p.page} active={current === p.page} />;
       })}
     </>
   );
