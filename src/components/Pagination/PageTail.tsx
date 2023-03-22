@@ -1,7 +1,7 @@
 import { usePaginate } from "./context";
 import PageItem from "./PageItem";
 import { PageDot } from "./PageNavigator";
-import { generatePages } from "./utils";
+import { generatePages } from "../utils";
 
 export default function PageTail() {
   const { maxPageDisplay, current, totalPage } = usePaginate()

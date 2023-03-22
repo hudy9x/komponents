@@ -1,9 +1,12 @@
 import { usePaginate } from "./context";
 
 export default function PageSummary() {
-  const { current, limit, total } = usePaginate()
-  const start = current === 1 ? 1 : (current - 1) * limit;
-  const end = current * limit > total ? total : current * limit
+  const { current, limit, total } = usePaginate();
+  let start = current === 1 ? 1 : (current - 1) * limit;
+  const end = current * limit > total ? total : current * limit;
+
+  start = start < 0 ? 0 : start;
+
   return (
     <div>
       <p className="text-sm text-gray-700">

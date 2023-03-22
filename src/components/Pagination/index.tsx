@@ -14,7 +14,8 @@ export default function PaginationContainer({
   total,
   maxPageDisplay = 5,
   limit = 10,
-  onChange = () => {}
+  onChange = () => {},
+  className
   
 }: IPaginationProps) {
   const [currentPage, setCurrentPage] = useState(current)
@@ -33,7 +34,7 @@ export default function PaginationContainer({
     maxPageDisplay,
     onChange
   }}>
-    <div className="page-wrapper">
+    <div className={`page-wrapper ${className}`}>
       <PageSummary />
       <div>
         <nav className="page-nav" aria-label="Pagination">
