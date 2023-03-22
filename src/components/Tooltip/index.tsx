@@ -10,15 +10,15 @@ interface ITooltipProps {
 export default function Tooltip({ children, title }: ITooltipProps) {
   const id = randomId()
   const updatedChildren = cloneElement(children, {
-    id,
-    className: [children.props.className, id].join(' ')
+    className: [children.props.className, `tt-${id}`].join(' ')
   })
 
   useEffect(() => {
     const unmount = createTooltip(id, title)
 
     return () => {
-      unmount()
+      console.log('unmount called')
+      // unmount()
     }
   }, [])
   return <>{updatedChildren}</>;
