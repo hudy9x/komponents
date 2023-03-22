@@ -1,5 +1,6 @@
 import ListContainer from "./containers/ListContainer";
 import PaginationContainer from "./containers/PaginationContainer";
+import TooltipContainer from "./containers/TooltipContainer";
 
 function App() {
   return (
@@ -7,8 +8,9 @@ function App() {
       id="wrapper"
       className="h-screen bg-gray-200 flex flex-col gap-6 items-center justify-center"
     >
-      <ListContainer />
-      <PaginationContainer />
+      {/*<ListContainer />*/}
+      {/*<PaginationContainer />*/}
+      <TooltipContainer />
     </div>
   );
 }

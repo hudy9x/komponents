@@ -1,0 +1,8 @@
+.tooltip-modal {
+  @apply absolute opacity-0 pointer-events-none px-3 py-2 bg-black/80 text-white rounded-md;
+  @apply transition-all;
+}
+
+.tooltip-modal.visible {
+  @apply opacity-100;
+}
