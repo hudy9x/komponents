@@ -14,8 +14,9 @@ export default function TooltipModal({ id, title }: { id: string, title: string 
       const tooltip = ref.current;
       if (!tooltip) return;
 
-      const { top, left, height  } = elem.getBoundingClientRect()
-      // const tooltipWidth = tooltip.offsetWidth
+      let { top, left, height  } = elem.getBoundingClientRect()
+      const tooltipWidth = tooltip.offsetWidth
+      const elemWidth = elem.offsetWidth
       // const tooltipHeight = tooltip.offsetHeight
       // const offset = 5
 
@@ -36,7 +37,11 @@ export default function TooltipModal({ id, title }: { id: string, title: string 
       //     return;
       //   }
       // }
-
+      if (tooltipWidth > elemWidth) {
+        left = left - (tooltipWidth - elemWidth)/2
+      } else {
+        left = left + (elemWidth - tooltipWidth)/2
+      }
       setPosition([top - height - 5, left])
       // setVisible(true)
     }

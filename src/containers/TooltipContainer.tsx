@@ -3,7 +3,7 @@ import { Tooltip } from "../components";
 export default function TooltipContainer() {
   return (
     <div>
-      <div className="w-[100px]" >
+      <div className="w-[100px] m-auto" >
 
         <Tooltip title="Tooltip 1st" >
           <button className="1238912">click me</button>
@@ -12,6 +12,9 @@ export default function TooltipContainer() {
           <button className="123">click me</button>
         </Tooltip>
         <Tooltip title="Tooltip 3rd" >
+          <button className="098091">click me</button>
+        </Tooltip>
+        <Tooltip title="me" >
           <button className="098091">click me</button>
         </Tooltip>
         <p>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</p>
