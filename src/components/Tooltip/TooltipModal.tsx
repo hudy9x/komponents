@@ -1,69 +1,97 @@
 import { useEffect, useRef, useState } from "react";
-import "./style.css"
+import "./style.css";
+import { ITooltipModalProps } from "./type";
 
-export default function TooltipModal({ id, title }: { id: string, title: string }) {
-  console.log(title)
-  const ref = useRef<HTMLDivElement>(null)
-  const [position, setPosition] = useState([0, 0])
-  const [visible, setVisible] = useState(false)
+export default function TooltipModal({
+  id,
+  title,
+  position = "top center"
+}: ITooltipModalProps) {
+
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPosition] = useState([0, 0]);
+  const [visible, setVisible] = useState(false);
+  const top = position.includes('top')
+  // const left = position.includes('left')
+  const right = position.includes('right')
+  const bottom = position.includes('bottom')
+  const center = position.includes('center')
 
   useEffect(() => {
-    // const W = document.body.offsetWidth
-    const elem = document.querySelector(`.tt-${id}`) as HTMLElement
-    const onMouseOver = (ev: MouseEvent) => {
+    const elem = document.querySelector(`.tt-${id}`) as HTMLElement;
+
+    const calculatePosition = () => {
       const tooltip = ref.current;
       if (!tooltip) return;
 
-      let { top, left, height  } = elem.getBoundingClientRect()
-      const tooltipWidth = tooltip.offsetWidth
-      const elemWidth = elem.offsetWidth
-      // const tooltipHeight = tooltip.offsetHeight
-      // const offset = 5
+      let { top: t, left: l, height } = elem.getBoundingClientRect();
+      const tooltipWidth = tooltip.offsetWidth;
+      const tooltipHeight = tooltip.offsetHeight
+      const elemWidth = elem.offsetWidth;
+      const offset = 5;
 
-      // console.log(top, left, height)
-
-      setVisible(true)
-      // if (top - height <= 0) {
-      //   if (left <= 0) {
-      //     setPosition([top + height + offset, 0])
-      //     return;
-      //   } 
-      //
-      //   console.log(left + tooltipWidth, W)
-      //   if (left + tooltipWidth > W) {
-      //     console.log('run here')
-      //     const offsetLeft = (left + tooltipWidth) - W
-      //     setPosition([top + height + offset, left - offsetLeft])
-      //     return;
-      //   }
-      // }
-      if (tooltipWidth > elemWidth) {
-        left = left - (tooltipWidth - elemWidth)/2
-      } else {
-        left = left + (elemWidth - tooltipWidth)/2
+      if (center) {
+        if (tooltipWidth > elemWidth) {
+          l = l - (tooltipWidth - elemWidth) / 2;
+        } else {
+          l = l + (elemWidth - tooltipWidth) / 2;
+        }
       }
-      setPosition([top - height - 5, left])
-      // setVisible(true)
+
+      if (top) {
+        const maxHeight = tooltipHeight > height ? tooltipHeight : height ;
+        t = t - maxHeight - offset;
+      }
+
+      if (right) {
+        if (tooltipWidth > elemWidth) {
+          l = l - (tooltipWidth - elemWidth);
+        } else {
+          l = l + (elemWidth - tooltipWidth);
+        }
+      }
+
+      if (bottom) {
+        t = t + height + offset;
+      }
+
+      setPosition([t, l]);
     }
+
+
+    calculatePosition()
+
+    const onMouseOver = () => {
+      calculatePosition()
+      setVisible(true)
+    };
 
     const onRemove = () => {
-      setVisible(false)
-    }
+      setVisible(false);
+    };
 
     if (elem) {
-      elem.addEventListener('mouseover', onMouseOver)
-      elem.addEventListener('mouseleave', onRemove)
+      elem.addEventListener("mouseover", onMouseOver);
+      elem.addEventListener("mouseleave", onRemove);
     }
 
     return () => {
-      elem && elem.removeEventListener('mouseover', onMouseOver)
-      elem && elem.removeEventListener('mouseleave', onRemove)
-    }
-  }, [])
+      elem && elem.removeEventListener("mouseover", onMouseOver);
+      elem && elem.removeEventListener("mouseleave", onRemove);
+    };
+  // eslint-disable-next-line
+  }, []);
 
-  return <div ref={ref} className={`tooltip-modal ${visible ? "visible" : ""} `}
-    style={{
-      top: position[0],
-      left: position[1]
-    }}>{title}</div>
+  return (
+    <div
+      ref={ref}
+      className={`tooltip-modal ${visible ? "visible" : ""} `}
+      style={{
+        top: pos[0],
+        left: pos[1],
+      }}
+    >
+      {title}
+    </div>
+  );
 }

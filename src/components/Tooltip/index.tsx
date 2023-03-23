@@ -1,25 +1,19 @@
 import { cloneElement, useEffect } from "react";
 import { randomId } from "../utils";
 import { createTooltip } from "./create";
+import { ITooltipWrapper } from "./type";
 
-interface ITooltipProps {
-  children: JSX.Element;
-  title: string
-}
-
-export default function Tooltip({ children, title }: ITooltipProps) {
-  const id = randomId()
+export default function TooltipWrapper({ 
+  children, 
+  title, ...rest }: ITooltipWrapper) {
+  const id = randomId();
   const updatedChildren = cloneElement(children, {
-    className: [children.props.className, `tt-${id}`].join(' ')
-  })
+    className: [children.props.className, `tt-${id}`].join(" "),
+  });
 
   useEffect(() => {
-    const unmount = createTooltip(id, title)
-
-    return () => {
-      console.log('unmount called')
-      // unmount()
-    }
-  }, [])
+    createTooltip({id, title, ...rest});
+    // eslint-disable-next-line
+  }, []);
   return <>{updatedChildren}</>;
 }
