@@ -8,9 +8,10 @@ function App() {
       id="wrapper"
       className=""
     >
-      {/*<ListContainer />*/}
-      {/*<PaginationContainer />*/}
+      <ListContainer />
+      <PaginationContainer />
       <TooltipContainer />
+
     </div>
   );
 }
