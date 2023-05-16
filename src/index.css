@@ -29,6 +29,7 @@ button.btn-sm {
 .tab-sidebar {
   @apply flex flex-col gap-2 h-screen bg-indigo-50/30 w-[250px];
   @apply py-4 px-3 border-r border-gray-200;
+  @apply shrink-0;
 }
 
 .tab-sidebar-item {
@@ -42,7 +43,7 @@ button.btn-sm {
 
 .tab-contents {
   @apply px-3 py-2 pb-12 relative h-screen overflow-y-auto overflow-x-hidden;
-  @apply px-[100px] w-[870px]
+  @apply px-[100px] w-full
 
 }
 
