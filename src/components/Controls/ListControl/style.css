@@ -23,7 +23,7 @@
 }
 
 .select-options {
-  @apply py-1.5 bg-white rounded-md border border-gray-200 shadow-md;
+  @apply py-1.5 bg-white rounded-md border shadow-sm;
   @apply absolute mt-1.5 left-0 w-full;
 }
 
