@@ -3,7 +3,7 @@
 @tailwind components;
 
 button {
-  @apply border border-gray-300 rounded-md px-3 py-1.5 bg-white;
+  @apply border border-gray-300 rounded px-3 py-1.5 bg-white;
   @apply hover:bg-gray-50 active:bg-gray-100;
 }
 
@@ -24,5 +24,50 @@ button.btn-warning {
 
 button.btn-sm {
   @apply px-2.5 py-1 text-sm rounded-md;
+}
+
+.tab-sidebar {
+  @apply flex flex-col gap-2 h-screen bg-indigo-50/30 w-[250px];
+  @apply py-4 px-3 border-r border-gray-200;
+}
+
+.tab-sidebar-item {
+  @apply px-3 py-2 text-sm hover:bg-indigo-50;
+  @apply transition cursor-pointer rounded;
+}
+
+.tab-sidebar-item.active {
+  @apply bg-indigo-600 text-white;
+}
+
+.tab-contents {
+  @apply px-3 py-2 relative h-screen overflow-y-hidden overflow-x-auto;
+  @apply px-[100px] w-[800px]
+
+}
+
+.tab-contents h2,
+.tab-contents h3 {
+  @apply mt-10 font-semibold;
+  @apply text-gray-700;
+}
+
+.tab-contents p {
+  @apply text-gray-700 text-sm mt-4;
+}
+
+
+.tab-content-header .title,
+.tab-contents h2{
+  @apply text-3xl
+}
+
+.tab-content-header .title-lv3,
+.tab-contents h3 {
+  @apply text-2xl
+}
+
+.tab-content-header .list {
+  @apply list-disc pl-6;
 }
 

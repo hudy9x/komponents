@@ -1,12 +1,14 @@
 #message-wrapper {
   @apply fixed top-4 left-0 w-full text-center;
   @apply flex flex-col-reverse;
+  @apply pointer-events-none;
 }
 
 .message {
   max-width: 300px;
-  @apply rounded-md bg-white shadow-lg;
-  @apply m-auto py-3 px-4 inline-flex gap-3 items-start;
+  @apply rounded-md bg-white shadow-sm;
+  @apply m-auto py-3 px-4 inline-flex gap-3 items-center;
+  @apply border text-sm text-gray-700;
 }
 
 .message svg {
@@ -14,7 +16,7 @@
 }
 
 .message.info svg {
-  @apply text-blue-400;
+  @apply text-blue-700;
 }
 
 .message p {
@@ -25,16 +27,24 @@
   @apply px-1 py-2;
 }
 
-.message.success {
-  @apply bg-green-100 text-green-700
+.message svg {
+  @apply rounded-full p-1.5;
 }
 
-.message.error {
-  @apply bg-red-100 text-red-700
+.message.info svg {
+  @apply bg-blue-500/20;
 }
 
-.message.warning {
-  @apply bg-yellow-100 text-yellow-700;
+.message.success svg{
+  @apply text-green-600 bg-green-500/20
+}
+
+.message.error svg {
+  @apply text-red-700 bg-red-500/20;
+}
+
+.message.warning svg {
+  @apply text-yellow-700 bg-yellow-500/20;
 }
 
 

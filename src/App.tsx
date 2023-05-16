@@ -1,17 +1,9 @@
-import ListContainer from "./containers/ListContainer";
-import PaginationContainer from "./containers/PaginationContainer";
-import TooltipContainer from "./containers/TooltipContainer";
+import Demo from "./containers/DemoContainer";
 
 function App() {
   return (
-    <div
-      id="wrapper"
-      className=""
-    >
-      <ListContainer />
-      <PaginationContainer />
-      <TooltipContainer />
-
+    <div id="wrapper" className="">
+      <Demo />
     </div>
   );
 }

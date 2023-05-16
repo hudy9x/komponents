@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { ListProvider } from "./context";
 import ListButton from "./ListButton";
 import ListItem from "./ListItem";
@@ -25,7 +25,6 @@ interface ListContainerProps {
   children: JSX.Element | JSX.Element[];
 }
 const ListContainer = ({ children }: ListContainerProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
   const { setVisible } = useListContext();
 
   // handle clicking outside dropdown list
@@ -53,7 +52,7 @@ const ListContainer = ({ children }: ListContainerProps) => {
       document.removeEventListener("mouseup", handleClickOutside);
       document.removeEventListener("keyup", handleKeypress);
     };
-  }, []);
+  }, [setVisible]);
 
   return <div className="select-wrapper">{children}</div>;
 };
