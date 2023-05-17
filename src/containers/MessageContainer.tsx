@@ -4,8 +4,9 @@ import {
   messageSuccess,
   messageWarning,
 } from "../components";
+import Button from "../components/Button";
 import CodePreview from "./CodePreview";
-import { TabContentHeader } from "./DemoContainer";
+import { TabContentHeader } from "./TabContentHeader";
 
 const props = {
   title: "Message",
@@ -29,6 +30,7 @@ export default function MessageContainer() {
   const inforHandler = () => {
     messageInfo("The message only shown one time");
   };
+
   return (
     <div>
       <TabContentHeader {...props} />
@@ -38,18 +40,10 @@ export default function MessageContainer() {
           <CodePreview
             components={
               <div className="space-x-1">
-                <button className="btn btn-primary" onClick={success}>
-                  Success message
-                </button>
-                <button className="btn" onClick={errorHandler}>
-                  Error message
-                </button>
-                <button className="btn" onClick={warningHandler}>
-                  Warning message
-                </button>
-                <button className="btn" onClick={inforHandler}>
-                  Info message
-                </button>
+                <Button primary title="Success message" onClick={success} />
+                <Button title="Error message" onClick={errorHandler} />
+                <Button title="Warning message" onClick={warningHandler} />
+                <Button title="Info message" onClick={inforHandler} />
               </div>
             }
             codes={[

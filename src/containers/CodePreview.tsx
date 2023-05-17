@@ -8,14 +8,21 @@ type TCodeContent = {
 
 interface ICodePreview {
   components: ReactNode;
+  desc?: string;
   codes: TCodeContent[];
 }
-export default function CodePreview({ components, codes }: ICodePreview) {
+export default function CodePreview({ components, desc, codes }: ICodePreview) {
   const [active, setActive] = useState(-1);
   return (
-    <div className="border rounded-md shadow-sm">
-      <div className="p-4">{components}</div>
-      <div className="flex justify-center items-center gap-2 border-t">
+    <div className="code-preview border rounded-md shadow-sm">
+      <div className="code-showcase p-4">{components}</div>
+      {desc ? (
+        <div className="code-desc">
+          <h3>Note</h3>
+          <p>{desc}</p>
+        </div>
+      ) : null}
+      <div className="code-language-tab flex justify-center items-center gap-2 border-t">
         {codes.map((code, index) => {
           const isActive = index === active ? "active" : "";
           return (

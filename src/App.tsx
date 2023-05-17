@@ -1,4 +1,4 @@
-import Demo from "./containers/DemoContainer";
+import Demo from "./pages/Demo";
 
 function App() {
   return (
