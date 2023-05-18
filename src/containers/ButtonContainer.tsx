@@ -29,7 +29,7 @@ export default function ButtonContainer() {
         <Column>
           <CodePreview
             components={
-              <div className="space-x-2">
+              <div className="space-x-2 space-y-2">
                 <Button primary title="Primary button" />
                 <Button title="Normal button" />
                 <Button danger title="Danger button" />
@@ -92,7 +92,7 @@ export default function ButtonContainer() {
 
           <CodePreview
             components={
-              <div className="space-x-2">
+              <div className="space-x-2 space-y-2">
                 <Button loading title="Loading button" />
                 <Button primary loading title="Loading button" />
                 <Button warn loading title="Loading button" />
@@ -140,7 +140,7 @@ export default function ButtonContainer() {
 
           <CodePreview
             components={
-              <div className="space-x-2">
+              <div className="space-x-2 space-y-2">
                 <Button loading size="sm" title="Small button" />
                 <Button loading title="Normal button" />
                 <Button loading size="lg" title="Large button" />

@@ -2,43 +2,84 @@
 @tailwind utilities;
 @tailwind components;
 
-.tab-sidebar {
-  @apply flex flex-col gap-2 h-screen bg-indigo-50/30 w-[250px];
-  @apply py-4 px-3 border-r border-gray-200;
-  @apply shrink-0;
+:root {
+  @apply text-slate-800;
 }
 
-.tab-sidebar-item {
-  @apply px-3 py-2 text-sm hover:bg-indigo-50;
-  @apply transition cursor-pointer rounded;
+.mcontainer {
+  @apply w-[1250px] m-auto;
 }
 
-.tab-sidebar-item.active {
-  @apply bg-indigo-600 text-white;
+.header {
+  @apply bg-white border-b shadow-sm;
 }
 
-.tab-contents {
-  @apply px-3 py-2 pb-12 relative h-screen;
+footer{
+  @apply bg-white border-t shadow-sm;
+}
+
+footer .mcontainer,
+.header .mcontainer {
+  @apply py-3;
+}
+
+footer .mcontainer {
+  @apply py-6;
+}
+
+.main-content .mcontainer {
+  @apply flex;
+}
+
+.main-content .content {
+  @apply border-l;
+}
+
+.sidebar{
+  @apply w-[200px] shrink-0 relative h-screen overflow-x-hidden overflow-y-auto;
+  @apply text-sm pt-5;
+  /* @apply flex flex-col gap-2 h-screen bg-indigo-50/30 w-[250px]; */
+  /* @apply py-4 px-3 border-r border-gray-200; */
+  /* @apply shrink-0; */
+}
+
+.sidebar nav{
+  @apply sticky top-0 left-0;
+}
+
+.sidebar-item {
+  /* @apply px-3 py-2 text-sm hover:bg-indigo-50; */
+  @apply py-1 text-gray-500 hover:text-gray-800 hover:underline;
+  @apply transition cursor-pointer;
+}
+
+.sidebar-item.active {
+  @apply font-medium text-gray-800;
+  /* @apply bg-indigo-600 text-white; */
+}
+
+.content {
+  @apply px-3 py-2 pb-12 relative;
   @apply px-[100px] w-full;
 }
 
-.tab-contents h2,
-.tab-contents h3 {
+.content h2,
+.content h3 {
   @apply mt-10 font-semibold;
   @apply text-gray-700;
 }
 
-.tab-contents p {
+.content p {
   @apply text-gray-700 text-sm mt-4;
 }
 
 .tab-content-header .title,
-.tab-contents h2 {
+.content h2 {
   @apply text-3xl;
 }
 
 .tab-content-header .title-lv3,
-.tab-contents h3 {
+.content h3 {
   @apply text-2xl;
 }
 
