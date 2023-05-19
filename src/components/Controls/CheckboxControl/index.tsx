@@ -1,6 +1,6 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import { randomId } from "../../utils";
-import "./index.css"
+import "./index.css";
 
 interface CheckboxProps {
   checked?: boolean;
@@ -19,11 +19,10 @@ const CheckboxControl = ({
   className,
   disabled,
 }: CheckboxProps) => {
-  const [isChecked, setIsChecked] = useState(checked);
+  const [isChecked, setIsChecked] = useState<boolean>(!!checked);
   const inputId = randomId();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
     onChange && onChange(event.target.checked);
   };
 
@@ -32,6 +31,14 @@ const CheckboxControl = ({
     disabled ? "disabled" : null,
     className,
   ].filter(Boolean);
+
+  useEffect(() => {
+    if (isChecked !== checked) {
+      setIsChecked(!!checked);
+      onChange && onChange(!!checked);
+    }
+    // eslint-disable-next-line
+  }, [checked, isChecked]);
 
   return (
     <div className={classNames.join(" ")}>

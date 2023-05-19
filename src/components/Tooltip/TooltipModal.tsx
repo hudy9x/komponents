@@ -5,30 +5,54 @@ import { ITooltipModalProps } from "./type";
 export default function TooltipModal({
   id,
   title,
-  position = "top center"
+  position = "top center",
 }: ITooltipModalProps) {
-
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPosition] = useState([0, 0]);
   const [visible, setVisible] = useState(false);
-  const top = position.includes('top')
-  // const left = position.includes('left')
-  const right = position.includes('right')
-  const bottom = position.includes('bottom')
-  const center = position.includes('center')
+  const top = position.includes("top");
+  const left = position.includes("left");
+  const right = position.includes("right");
+  const bottom = position.includes("bottom");
+  const center = position.includes("center");
+
+  const onlyLeft = left && !right && !top && !bottom;
+  const onlyRight = right && !left && !top && !bottom;
 
   useEffect(() => {
     const elem = document.querySelector(`.tt-${id}`) as HTMLElement;
 
     const calculatePosition = () => {
       const tooltip = ref.current;
-      if (!tooltip) return;
+      if (!tooltip) {
+        console.log("tooltip not exit");
+        return;
+      }
 
       let { top: t, left: l, height } = elem.getBoundingClientRect();
       const tooltipWidth = tooltip.offsetWidth;
-      const tooltipHeight = tooltip.offsetHeight
+      const tooltipHeight = tooltip.offsetHeight;
       const elemWidth = elem.offsetWidth;
+      const elemHeight = elem.offsetHeight;
       const offset = 5;
+
+      if (onlyLeft) {
+        l = l - tooltipWidth - offset;
+        if (tooltipHeight > elemHeight) {
+          t = t - (tooltipHeight - elemHeight) / 2;
+        }
+        setPosition([t, l]);
+        return;
+      }
+
+      if (onlyRight) {
+        l = l + elemWidth + offset;
+        if (tooltipHeight > elemHeight) {
+          t = t - (tooltipHeight - elemHeight) / 2;
+        }
+        setPosition([t, l]);
+        return;
+      }
 
       if (center) {
         if (tooltipWidth > elemWidth) {
@@ -39,7 +63,7 @@ export default function TooltipModal({
       }
 
       if (top) {
-        const maxHeight = tooltipHeight > height ? tooltipHeight : height ;
+        const maxHeight = tooltipHeight > height ? tooltipHeight : height;
         t = t - maxHeight - offset;
       }
 
@@ -56,14 +80,13 @@ export default function TooltipModal({
       }
 
       setPosition([t, l]);
-    }
+    };
 
-
-    calculatePosition()
+    calculatePosition();
 
     const onMouseOver = () => {
-      calculatePosition()
-      setVisible(true)
+      calculatePosition();
+      setVisible(true);
     };
 
     const onRemove = () => {
@@ -79,7 +102,7 @@ export default function TooltipModal({
       elem && elem.removeEventListener("mouseover", onMouseOver);
       elem && elem.removeEventListener("mouseleave", onRemove);
     };
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
